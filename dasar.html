@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .nav {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 20px;
+           
+        }
+
+        .nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 20px;
+            align-items:center ;
+            justify-content: center;
+        }
+
+        .nav ul li {
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .nav ul li:hover {
+            color: #00bcd4;
+        }
+
+        .main {
+            display: flex;
+            flex: 1;
+        }
+
+        .main1, .main2 {
+            flex: 1;
+            padding: 20px;
+            color: #fff;
+        }
+
+        .main1 {
+            background-color: #e74c3c; /* merah yang lebih enak dilihat */
+        }
+
+        .main2 {
+            background-color: #2c3e50; /* hitam kebiruan */
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 15px 0;
+            font-size: 14px;
+        }
+
+        @media (max-width: 768px) {
+            .main {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <ul>
+            <li>Home</li>
+            <li>About</li>
+            <li>Contact</li>
+        </ul>
+    </nav>
+
+    <div class="main">
+        <div class="main1">
+            <h1>Home</h1>
+            <p>Ini adalah halaman home</p>
+            <ul>
+                <li>
+                    <p>dd</p>
+                </li>
+            </ul>
+        </div>
+        <div class="main2">
+            <h1>Home 2</h1>
+            <p>Ini adalah halaman home 2</p>
+        </div>
+    </div>
+
+
+    <script>
+
+    fetch('https://jsonplaceholder.typicode.com/users')
+    .then(response => response.json())
+    .then(posts => {
+        console.log(name);
+    })
+    .catch(error => {
+        console.error('Gagal fetch:', error);
+    });
+
+
+        function reverseString(str) {
+          return str.split("").reverse().join("");
+        }
+      
+        alert(reverseString("hello")); 
+    </script>
+    <footer>
+        <p>© 2025 - Ini adalah footer</p>
+    </footer>
+</body>
+</html>
