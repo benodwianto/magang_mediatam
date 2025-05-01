@@ -54,7 +54,14 @@
     <!-- tabel user -->
     <div class="container">
         <h1>User yang berumur diatas 20 Tahun</h1>
-        <a href="../task7bootstrap.php" class="btn btn-dark">Tambah Data</a>
+        <div class="row">
+            <div class="col-lg-6 d-flex justify-content-between">
+                <a href="../task7bootstrap.php" class="btn btn-dark">Tambah Data</a>
+                <form action="" method="post">
+                    <button name="all" class="btn btn-secondary">Tampilkan Semua Data</button>
+                </form>
+            </div>
+        </div>
         <table class="table">
             <thead>
                 <tr>
@@ -72,7 +79,12 @@
                 <?php
                 include "functions.php";
                 $id = 0;
-                $dataUser = mysqli_query($conn, "SELECT * FROM user WHERE usia > 20");
+                $namaTabel = "user";
+                if (isset($_POST['all'])) {
+                    $dataUser = getUsers($conn, $namaTabel);
+                } else {
+                    $dataUser = getUsers($conn, $namaTabel, "usia > 20");
+                }
                 while ($users = mysqli_fetch_assoc($dataUser)) : ?>
                     <tr>
                         <td><?= ++$id; ?></td>
@@ -84,7 +96,7 @@
                         <td><?= $users['pesan']; ?></td>
                         <td>
                             <a href="edit.php?id=<?= $users['id']; ?>" class="btn btn-primary">Edit</a>
-                            <a href="delete.php?id=<?= $users['id']; ?>" class="btn btn-danger">Delete</a>
+                            <a href="delete.php?id=<?= $users['id']; ?>" class="btn btn-danger" onclick="return confirm('Apakah anda yakin ingin menghapus data ini?')">Delete</a>
                         </td>
                     </tr>
                 <?php endwhile; ?>

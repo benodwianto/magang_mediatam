@@ -1,6 +1,7 @@
 <?php
 include 'conn.php';
 
+// Query data from database
 function queryData($table)
 {
     global $conn;
@@ -25,6 +26,17 @@ function queryById($table, $id)
     return $row;
 }
 
+function getUsers($conn, $table, $whereClause = "")
+{
+    $sql = "SELECT * FROM $table";
+    if (!empty($whereClause)) {
+        $sql .= " WHERE " . $whereClause;
+    }
+    $result = mysqli_query($conn, $sql);
+    return $result;
+}
+
+// Function for user data
 function tambahUser($name, $email, $password, $usia, $jenis_kelamin, $pesan)
 {
     global $conn;
@@ -55,6 +67,24 @@ function editUser($id, $name, $email, $password, $usia, $jenis_kelamin, $pesan)
     } else {
         echo "<script>
         alert('Data gagal diupdate!');
+        window.location.href = 'index.php';
+        </script>";
+    }
+    $conn->close();
+}
+
+function deleteUser($id)
+{
+    global $conn;
+    $query = "DELETE FROM user WHERE id = $id";
+    if ($conn->query($query) === TRUE) {
+        echo "<script>
+        alert('Data berhasil dihapus!');
+        window.location.href = 'index.php';
+        </script>";
+    } else {
+        echo "<script>
+        alert('Data gagal dihapus!');
         window.location.href = 'index.php';
         </script>";
     }
